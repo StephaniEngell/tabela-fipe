@@ -4,9 +4,9 @@ import { DataProvider } from "../context";
 
 export default function Home() {
   return (
-    <DataProvider>
+    <>
       <PageTitle />
       <Card />
-    </DataProvider>
+    </>
   );
 }

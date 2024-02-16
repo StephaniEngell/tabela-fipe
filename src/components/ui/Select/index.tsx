@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import St, { SelectProps } from '@mui/material/Select';
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import St, { SelectProps } from "@mui/material/Select";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -18,16 +18,16 @@ const MenuProps = {
 };
 
 type Object = {
-  codigo: string
-  nome: string
-}
+  codigo: string;
+  nome: string;
+};
 
 type MultipleSelectProps = SelectProps & {
-  data?: Object[],
-  name?: string
-}
+  data?: Object[];
+  name?: string;
+};
 
-export default function Select({data, name, ...rest} : MultipleSelectProps) {
+export default function Select({ data, name, ...rest }: MultipleSelectProps) {
   return (
     <div>
       <FormControl sx={{ m: 1, width: 300 }}>
@@ -38,10 +38,7 @@ export default function Select({data, name, ...rest} : MultipleSelectProps) {
           {...rest}
         >
           {data?.map((item) => (
-            <MenuItem
-              key={name}
-              value={item.codigo}
-            >
+            <MenuItem key={name} value={item.codigo}>
               {item.nome}
             </MenuItem>
           ))}

@@ -1,8 +1,17 @@
-'use client'
-import React, { useEffect, useState } from "react";
-import { useDataContext } from "@/src/context";
+"use client";
+import React, { useContext, useEffect, useState } from "react";
+import { DataContext, useDataContext } from "@/src/context";
 import { useSearchParams } from "next/navigation";
-import { Box, Typography, Table, TableHead, TableRow, TableCell, TableBody } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Button,
+} from "@mui/material";
 import { styled } from "@mui/system";
 
 const Container = styled(Box)({
@@ -22,57 +31,50 @@ const Price = styled(Typography)({
   padding: "5px",
   borderRadius: "5px",
   color: "white",
-  fontSize: '35px',
+  fontSize: "35px",
 });
 
 const StyledTitle = styled(Typography)({
-  fontSize: '60px'
+  fontSize: "60px",
 });
 
 const StyledDescription = styled(Typography)({
-  fontSize: '16px'
+  fontSize: "16px",
 });
 
 const StyledTable = styled(Table)({
-  borderCollapse: 'collapse',
-  width: '25%',
-  
+  borderCollapse: "collapse",
+  width: "25%",
 });
 
-const StyledTableHead = styled(TableHead)({
+const StyledTableHead = styled(TableHead)({});
 
-});
-
-const StyledTableBody = styled(TableBody)({
-  
-});
+const StyledTableBody = styled(TableBody)({});
 
 const StyledTableCell = styled(TableCell)({
-  padding: '5px 10px',
-  color: 'white',
+  padding: "5px 10px",
+  color: "white",
   background: "#01A38B",
-  border: '1px solid #333',
+  border: "1px solid #333",
 });
 
 const StyledTableData = styled(TableCell)({
-  padding: '5px 10px',
-  color: '#333',
+  padding: "5px 10px",
+  color: "#333",
   background: "#DCF5F2",
-  border: '1px solid #333',
+  border: "1px solid #333",
 });
 
 const StyledTableRow = styled(TableRow)({
-  border: '1px solid #333',
-  padding: '8px 10px',
-  
+  border: "1px solid #333",
+  padding: "8px 10px",
 });
 
 function Result() {
   const [data, setData] = useState<any>();
+  const result = useContext(DataContext);
 
   const { selectedBrand, selectedModel, selectedYear } = useDataContext();
-
-  console.log(selectedBrand)
 
   const params = useSearchParams();
   const marca = params.get("marca");
@@ -82,15 +84,14 @@ function Result() {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://parallelum.com.br/fipe/api/v1/carros/marcas/${marca}/modelos/${modelo}/anos/${ano}`
+        `https://parallelum.com.br/fipe/api/v1/carros/marcas/${selectedBrand}/modelos/${selectedModel}/anos/${selectedYear}`
       );
       const data = await response.json();
       setData(data);
     };
 
     fetchData();
-  }, [ano, marca, modelo, setData]);
-
+  }, [ano, marca, modelo, selectedBrand, selectedModel, selectedYear, setData]);
 
   return (
     <Container>
@@ -112,7 +113,12 @@ function Result() {
         </StyledTableBody>
       </StyledTable>
       <Price variant="h3">{data?.Valor}</Price>
-      <StyledDescription variant="body1">Este é o preço de compra do veículo</StyledDescription>
+      <StyledDescription variant="body1">
+        Este é o preço de compra do veículo
+      </StyledDescription>
+      <Button href="/" LinkComponent={"a"} variant="contained">
+        Nova Pesquisa
+      </Button>
     </Container>
   );
 }

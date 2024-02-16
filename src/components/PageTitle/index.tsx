@@ -19,7 +19,6 @@ const StyledSubtitle = styled(Typography)({
 });
 
 function PageTitle() {
-
   return (
     <ContainerStyle>
       <StyledTitle>Tabela Fipe</StyledTitle>
