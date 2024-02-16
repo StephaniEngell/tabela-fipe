@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { Box, Typography, styled } from "@mui/material";
 
 const ContainerStyle = styled(Box)({

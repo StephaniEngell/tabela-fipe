@@ -1,7 +1,7 @@
-"use client";
-import React, { useContext, useEffect, useState } from "react";
-import { DataContext, useDataContext } from "@/src/context";
-import { useSearchParams } from "next/navigation";
+'use client';
+import React, { useEffect, useState } from "react";
+import { useDataContext } from "@/src/context";
+// import { useSearchParams } from "next/navigation";
 import {
   Box,
   Typography,
@@ -72,14 +72,14 @@ const StyledTableRow = styled(TableRow)({
 
 function Result() {
   const [data, setData] = useState<any>();
-  const result = useContext(DataContext);
+  
 
   const { selectedBrand, selectedModel, selectedYear } = useDataContext();
 
-  const params = useSearchParams();
-  const marca = params.get("marca");
-  const modelo = params.get("modelo");
-  const ano = params.get("ano");
+  // const params = useSearchParams();
+  // const marca = params.get("marca");
+  // const modelo = params.get("modelo");
+  // const ano = params.get("ano");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -91,7 +91,7 @@ function Result() {
     };
 
     fetchData();
-  }, [ano, marca, modelo, selectedBrand, selectedModel, selectedYear, setData]);
+  }, [ selectedBrand, selectedModel, selectedYear, setData]);
 
   return (
     <Container>

@@ -16,10 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <DataProvider>
-      <html lang="pt-BR">
+    <html lang="pt-BR">
+      <DataProvider>
         <body className={roboto.className}>{children}</body>
-      </html>
-    </DataProvider>
+      </DataProvider>
+    </html>
   );
 }
